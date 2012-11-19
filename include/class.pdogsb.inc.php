@@ -55,23 +55,25 @@ $req = "select type from utilisateur where utilisateur.login='".$login."' and ut
 $rs = PdoGsb::$monPdo->query($req);
 $type = $rs->fetch(pdo::FETCH_ASSOC);            
 if($type['type'] =="C")
-{
-    $requete = "select gestionnaire.id as id, gestionnaire.nom as nom, gestionnaire.prenom as prenom from gestionnaire
-    where gestionnaire.login='".$login."'";
-    $rs1 = PdoGsb::$monPdo->query($requete);
-    $ligne = $rs1->fetch(pdo::FETCH_ASSOC);
-    $ligne['type']="C";
-}
+    {
+        $requete = "select gestionnaire.id as id, gestionnaire.nom as nom, gestionnaire.prenom as prenom from gestionnaire
+        where gestionnaire.login='".$login."'";
+        $rs1 = PdoGsb::$monPdo->query($requete);
+        $ligne = $rs1->fetch(pdo::FETCH_ASSOC);
+        $ligne['type']="C";
+        return $ligne;
+    }
 else if($type['type'] =="V")
-{
-    $requete = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom from visiteur
-    where visiteur.login='".$login."'";
-    $rs1 = PdoGsb::$monPdo->query($requete);
-    $ligne = $rs1->fetch(pdo::FETCH_ASSOC);
-    $ligne['type']="V";
-}
+    {
+        $requete = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom from visiteur
+        where visiteur.login='".$login."'";
+        $rs1 = PdoGsb::$monPdo->query($requete);
+        $ligne = $rs1->fetch(pdo::FETCH_ASSOC);
+        $ligne['type']="V";
+        return $ligne;
+    }
             
-return $ligne;
+
 }
 
 /**
