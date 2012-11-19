@@ -50,8 +50,9 @@ return PdoGsb::$monPdoGsb;
 * @param $mdp
 * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
 */
-public function getInfosVisiteur($login, $mdp){           
-$req = "select type from utilisateur where utilisateur.login='".$login."' and utilisateur.mdp='".$mdp."'";
+public function getInfosVisiteur($login, $mdp){ 
+$password = crypt($login, $mdp);
+$req = "select type from utilisateur where utilisateur.login='".$login."' and utilisateur.mdp='".$password."'";
 $rs = PdoGsb::$monPdo->query($req);
 $type = $rs->fetch(pdo::FETCH_ASSOC);            
 if($type['type'] =="C")
