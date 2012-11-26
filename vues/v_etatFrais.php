@@ -8,12 +8,12 @@
                      
     </p>
   	<table class="listeLegere">
-  	   <caption>Eléments forfaitisés </caption>
+  	   <caption>Eléments compris dans le forfait </caption>
         <tr>
          <?php
-         foreach ( $lesFraisForfait as $unFraisForfait ) 
+         foreach ( $lesFraisForfait as $unFraisDuForfait ) 
 		 {
-			$libelle = $unFraisForfait['libelle'];
+			$libelle = $unFraisDuForfait['libelle'];
 		?>	
 			<th> <?php echo $libelle?></th>
 		 <?php
@@ -22,9 +22,9 @@
 		</tr>
         <tr>
         <?php
-          foreach (  $lesFraisForfait as $unFraisForfait  ) 
+          foreach (  $lesFraisForfait as $unFraisDuForfait  ) 
 		  {
-				$quantite = $unFraisForfait['quantite'];
+				$quantite = $unFraisDuForfait['quantite'];
 		?>
                 <td class="qteForfait"><?php echo $quantite?> </td>
 		 <?php

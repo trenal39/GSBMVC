@@ -28,10 +28,9 @@ private function __construct(){
     PdoGsb::$monPdo = new PDO(PdoGsb::$serveur.';'.PdoGsb::$bdd, PdoGsb::$user, PdoGsb::$mdp);
     PdoGsb::$monPdo->query("SET CHARACTER SET utf8");
 }
-public function _destruct()
-                {
-PdoGsb::$monPdo = null;
-                }
+public function _destruct(){
+    PdoGsb::$monPdo = null;
+}
 /**
 * Fonction statique qui crée l'unique instance de la classe
 * Appel : $instancePdoGsb = PdoGsb::getPdoGsb();
@@ -296,5 +295,21 @@ public function majEtatFicheFrais($idVisiteur,$mois,$etat){
     where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
     PdoGsb::$monPdo->exec($req);
     }
+/**
+* Recherche tous les visiteur ayant une fiche de frais en cours 
+* @return Ressource tableaux
+*/
+public function visiteurFicheEnCours() {
+    $req = " Select distinct(id),nom,prenom from visiteur inner join fichefrais on fichefrais.idVisiteur = visiteur.id Where fichefrais.idEtat='CR'";
+    return PdoGsb::$monPdo->query($req);
+    }
+/**
+ * Recherche tous les mois ayant une fiche en cours
+ * @return Ressource tableaux
+ */
+public function moisFicheEnCours() {
+	$req = " Select distinct(mois) from fichefrais where fichefrais.idEtat='CR'";
+	return PdoGsb::$monPdo->query($req);
+    }    
 }
 ?>

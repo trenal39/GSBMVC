@@ -5,7 +5,7 @@
       <div class="corpsForm">
           
           <fieldset>
-            <legend>Eléments forfaitisés
+            <legend>Eléments compris dans le forfait
             </legend>
 			<?php
 				foreach ($lesFraisForfait as $unFrais)
