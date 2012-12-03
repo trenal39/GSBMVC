@@ -8,7 +8,7 @@ if($_GET['action']=="selectionnerVisiteur" && isset($_GET['action2']) && $_GET['
 {
     $pdo->majEtatFicheFrais($_POST['Id'],$_POST['mois'],"VA");
     echo"<script> alert('La fiche de frais a été validée avec succès ! ');";
-    echo"window.location = 'index.php?uc=validerFicheFrais&action=selectionnerVisiteur'</script>";
+    echo"window.location = 'index.php?uc=ValiderFicheFrais&action=selectionnerVisiteur'</script>";
 }
 
 if($_GET['action']=="VisiteurSelected")
@@ -25,7 +25,7 @@ if($_GET['action']=="VisiteurSelected")
       <h2>Valider les fiches de frais des visiteurs médicaux</h2>
       <h3><legend>Visiteur à sélectionner :</legend></h3>
 	    <div class="corpsForm">
-                <form method="POST" action="index.php?uc=validerFicheFrais&action=VisiteurSelected">
+                <form method="POST" action="index.php?uc=ValiderFicheFrais&action=VisiteurSelected">
                 <br/>
             <label for="visiteur">Visiteur :</label>
             <select name="Id">
@@ -92,13 +92,13 @@ if($_GET['action']=="VisiteurSelected")
 		else
 		{?>
                         <hr align="left" width="100%" color="Black" size="3">
-                        <form method="POST" onSubmit="return(confirm('Etes-vous sûr de vouloir valider cette fiche ?'));" action="index.php?uc=validerFicheFrais&action=selectionnerVisiteur&action2=FicheValide">
+                        <form method="POST" onSubmit="return(confirm('Etes-vous sûr de vouloir valider cette fiche ?'));" action="index.php?uc=validerFrais&action=selectionnerVisiteur&action2=FicheValide">
                         <input TYPE='hidden' NAME='Id' VALUE='<?php echo $_POST['Id'] ?>'>
                         <input TYPE='hidden' NAME='mois' VALUE='<?php echo $_POST['mois'] ?>'>
                         <input type='Submit' value='Valider cette fiche' style='left: 37%; position: relative'>
                         </form>
                         <div class="corpsForm">
-                        <form method="POST" action="index.php?uc=validerFicheFrais&action=VisiteurSelected&action2=FraitForfait" onsubmit="return confirm('Voulez-vous vraiment modifier les frais forfaits ?');">
+                        <form method="POST" action="index.php?uc=ValiderFicheFrais&action=VisiteurSelected&action2=FraitForfait" onsubmit="return confirm('Voulez-vous vraiment modifier les frais forfaits ?');">
                         <input TYPE='hidden' NAME='Id' VALUE='<?php echo $_POST['Id'] ?>'>
                         <input TYPE='hidden' NAME='mois' VALUE='<?php echo $_POST['mois'] ?>'>
                         <fieldset>
@@ -126,7 +126,7 @@ if($_GET['action']=="VisiteurSelected")
                   
                         foreach($FraitHorsForfait as $TabHorsForfait)
                         {?>
-                        <form method="POST" action ="index.php?uc=validerFicheFrais&action=VisiteurSelected&action2=FraitHorsForfait" onsubmit="return confirm('Voulez-vous vraiment supprimer ce frais hors forfait ?');">
+                        <form method="POST" action ="index.php?uc=ValideVrFicheFrais&action=VisiteurSelected&action2=FraitHorsForfait" onsubmit="return confirm('Voulez-vous vraiment supprimer ce frais hors forfait ?');">
                         <input TYPE='hidden' NAME='Id' VALUE='<?php echo $_POST['Id'] ?>'>
                         <input TYPE='hidden' NAME='mois' VALUE='<?php echo $_POST['mois'] ?>'>
 			<tr><td><?php echo $TabHorsForfait['date']?></td><td><?php echo $TabHorsForfait['libelle']?></td><td><?php echo $TabHorsForfait['montant']?></td><td align=center><input  type="Submit" value="Supprimer"/></td></tr>
