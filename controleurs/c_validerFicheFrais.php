@@ -126,7 +126,7 @@ if($_GET['action']=="VisiteurSelected")
                   
                         foreach($FraitHorsForfait as $TabHorsForfait)
                         {?>
-                        <form method="POST" action ="index.php?uc=ValideVrFicheFrais&action=VisiteurSelected&action2=FraitHorsForfait" onsubmit="return confirm('Voulez-vous vraiment supprimer ce frais hors forfait ?');">
+                        <form method="POST" action ="index.php?uc=ValiderFicheFrais&action=VisiteurSelected&action2=FraitHorsForfait" onsubmit="return confirm('Voulez-vous vraiment supprimer ce frais hors forfait ?');">
                         <input TYPE='hidden' NAME='Id' VALUE='<?php echo $_POST['Id'] ?>'>
                         <input TYPE='hidden' NAME='mois' VALUE='<?php echo $_POST['mois'] ?>'>
 			<tr><td><?php echo $TabHorsForfait['date']?></td><td><?php echo $TabHorsForfait['libelle']?></td><td><?php echo $TabHorsForfait['montant']?></td><td align=center><input  type="Submit" value="Supprimer"/></td></tr>
