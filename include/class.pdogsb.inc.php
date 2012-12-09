@@ -310,6 +310,55 @@ public function visiteurFicheEnCours() {
 public function moisFicheEnCours() {
 	$req = " Select distinct(mois) from fichefrais where fichefrais.idEtat='CR'";
 	return PdoGsb::$monPdo->query($req);
-    }    
+    }
+/**
+ * Recherche tous les visiteurs qui ont des fiches à l’état validées ou remboursés pour les trois mois précédant la date du jour.
+ * Ajouter par S R
+ 
+ * @return Ressource tableaux
+ */
+public function visiteurValidé() {
+	$requete = "Select DISTINCT(id),nom,prenom,mois,idEtat from visiteur Inner join fichefrais on fichefrais.idVisiteur = visiteur.id Where fichefrais.idEtat='VA' OR (fichefrais.idEtat='RB' AND  MONTH(CURRENT_DATE)-MONTH(dateModif)<=4 AND CURRENT_DATE-dateModif<1)";
+	return PdoGsb::$monPdo->query($requete);
+}
+/**
+ * Recherche tous les mois pour les visiteurs qui ont des fiches à l’état validées ou remboursés pour les trois mois précédant la date du jour.
+ * Ajouter par S R
+ 
+ * @return Ressource tableaux
+ */
+public function moisFicheValidée()
+{
+    $requete = " Select DISTINCT(mois) from fichefrais Where fichefrais.idEtat='VA' OR (fichefrais.idEtat='RB' AND  MONTH(CURRENT_DATE)-MONTH(dateModif)<=4 AND CURRENT_DATE-dateModif<1)";
+	return PdoGsb::$monPdo->query($requete);
+}    
+    
+/**
+ * Vérifie si il existe une fiche pour un visiteur et un mois donné pour les visiteurs qui ont des fiches à l’état validées ou remboursés pour les trois mois précédant la date du jour.
+ * Ajouter par S R
+ 
+ * @return Ressource tableaux
+ */
+public function GetMontantTotal($id, $mois) {      
+        $requete = "select SUM(quantite*montant) AS total
+                       from lignefraisforfait INNER JOIN fraisforfait
+                       ON lignefraisforfait.idFraisForfait = fraisforfait.id
+                       WHERE idVisiteur = '".$id."' and mois= '".$mois."'";
+        $req = PdoGsb::$monPdo->query($requete);
+        $fetch = $req->fetch();
+        return $fetch['total'];
+    }
+/**
+ * Vérifie si il existe une fiche pour un visiteur et un mois donné pour les visiteurs qui ont des fiches à l’état validées ou remboursés pour les trois mois précédant la date du jour.
+ * Ajouter par S R
+ 
+ * @return Ressource tableaux
+ */
+public function TestMoisFiche($id,$mois)
+{
+    $requete = "Select id from visiteur Inner join fichefrais on fichefrais.idVisiteur = visiteur.id Where (fichefrais.idEtat='VA' OR (fichefrais.idEtat='RB' AND  MONTH(CURRENT_DATE)-MONTH(dateModif)<=4 AND CURRENT_DATE-dateModif<1)) AND visiteur.id='".$id."' AND mois='".$mois."'";
+
+	return PdoGsb::$monPdo->query($requete);
+}
 }
 ?>

@@ -178,11 +178,26 @@ function ajouterErreur($msg){
 * @return le nombre d'erreurs
 */
 function nbErreurs(){
-   if (!isset($_REQUEST['erreurs'])){
-return 0;
+    if (!isset($_REQUEST['erreurs'])){
+ return 0;
+ }
+ else{
+ return count($_REQUEST['erreurs']);
+ }
 }
-else{
-return count($_REQUEST['erreurs']);
-}
+function GetLibelleMois($mois) {
+    $tabLibelles = array(1=>"Janvier", 
+                            "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+                            "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+    $libelle="";
+    $mois=substr($mois,4,5);
+	//
+    if($mois<10)
+    {
+        $mois=substr($mois,1,1);
+    }
+    $libelle = $tabLibelles[$mois];
+
+    return $libelle;
 }
 ?>
