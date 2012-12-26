@@ -185,19 +185,74 @@ function nbErreurs(){
  return count($_REQUEST['erreurs']);
  }
 }
+/**
+* Retoune le libellé du mois
+*/
 function GetLibelleMois($mois) {
-    $tabLibelles = array(1=>"Janvier", 
-                            "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+    $Libelles = array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
                             "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-    $libelle="";
-    $mois=substr($mois,4,5);
-	//
-    if($mois<10)
-    {
-        $mois=substr($mois,1,1);
-    }
-    $libelle = $tabLibelles[$mois];
 
+    if($mois==1)
+    {$libelle = $Libelles[0];}
+    else
+    {
+       if($mois==2)
+        {$libelle = $Libelles[1];}
+        else
+        {
+           if($mois==3)
+            {$libelle = $Libelles[2];}
+            else
+            {
+               if($mois==4)
+                {$libelle = $Libelles[3];} 
+                else
+                {
+                   if($mois==5)
+                    {$libelle = $Libelles[4];} 
+                    else
+                    {
+                       if($mois==6)
+                        {$libelle = $Libelles[5];} 
+                        else
+                        {
+                           if($mois==7)
+                            {$libelle = $Libelles[6];} 
+                            else
+                            {
+                               if($mois==8)
+                                {$libelle = $Libelles[7];}
+                                else
+                                {
+                                   if($mois==9)
+                                    {$libelle = $Libelles[8];} 
+                                    else
+                                    {
+                                       if($mois==10)
+                                        {$libelle = $Libelles[9];} 
+                                        else
+                                        {
+                                           if($mois==11)
+                                            {$libelle = $Libelles[10];}
+                                            else
+                                            {
+                                               if($mois==12)
+                                                {$libelle = $Libelles[11];} 
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     return $libelle;
+}
+function valideFicheF()
+{
+    
 }
 ?>
