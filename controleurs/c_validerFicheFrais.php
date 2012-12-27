@@ -3,17 +3,14 @@ include("vues/v_sommaire.php");
 
 $listeVisiteur=$pdo->visiteurFicheEnCours();
 $listeMois=$pdo->moisFicheEnCours();
-
-
-    
-
 ?>
 
  <div id="contenu">
      
 <h2>Valider les fiches de frais des visiteurs médicaux</h2>
-<h3><legend>Visiteur à sélectionner :</legend></h3>
-<div class="corpsForm">
+
+<fieldset>
+<legend><h3>Visiteur à sélectionner :</h3></legend>
     <form method="POST" action="index.php?uc=ValiderFicheFrais&action=VisiteurSelect">
       <br/>
       <label for="nomVisiteur">Visiteur :</label>
@@ -56,7 +53,7 @@ $listeMois=$pdo->moisFicheEnCours();
             ?>  
             </select>
             
-</div>
+</fieldset>
         <br/>
         <input type="Submit" value="Valider" style="left: 83%; position: relative">
     </form>
@@ -98,7 +95,7 @@ $listeMois=$pdo->moisFicheEnCours();
                             <input type='Submit' value='Valider cette fiche' style='left: 37%; position: relative'>
                         </form>
     
-                        <div class="corpsForm">
+                        
                         <form method="POST" action="index.php?uc=ValiderFicheFrais&action=VisiteurSelect&action2=FraitForfait" onsubmit="return confirm('Voulez-vous vraiment modifier les frais forfaits ?');">
                         <input TYPE='hidden' NAME='Id' VALUE='<?php echo $_POST['visiteur'] ?>'>
                         <input TYPE='hidden' NAME='mois' VALUE='<?php echo $_POST['mois'] ?>'>
@@ -114,10 +111,10 @@ $listeMois=$pdo->moisFicheEnCours();
                          </p> 
                          <?php
                           if(isset($_GET['action2']) && $_GET['action2']=="FraitForfait")
-                            {echo "Element modifiés avec succès !";}
+                            {echo "La modification des frais du forfait à bien été effectué !";}
                             ?>
                          </fieldset>
-                         </div>
+                         
                         <br><input type="Submit" value="Valider" style="left: 87%; position: relative"></form>
                         <br>
 			
